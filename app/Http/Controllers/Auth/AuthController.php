@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -17,28 +19,56 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required',
-        ]);
 
-        if ( User::where('email', $request->email)->first() ) {
-            return $this->handleResponse( false, null, 'Такой пользователь уже есть!', 200);
-        }
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|unique:users|email',
+            'password' => 'required',
+            'repassword' => 'required|same:password',
+        ]);
 
 
         if($validator->fails()){
-            return $this->handleResponse(false, $validator->errors, 'Ошибка проверки!', 200);
+            return $this->handleResponse(false, $validator->errors(), 'Ошибка проверки!', 200);
         }
 
-        $input = $request->all();
+        $data = [
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ];
 
-        $input = Arr::add($input, 'password', bcrypt('password'));
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('LaravelSanctumAuth')->plainTextToken;
+        $user = User::create($data);
+        $token =  $user->createToken('LaravelSanctumAuth')->plainTextToken;
+        $user = Arr::add($user, 'token', $token);
 
-        //return $this->handleResponse($success, 'User successfully registered!');
+        return $this->handleResponse(true, $user, 'Пользователь зарегистрован.', 200);
+
+    }
+
+    public function login(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+
+        if($validator->fails()){
+            return $this->handleResponse(false, $validator->errors(), 'Ошибка проверки!', 200);
+        }
+
+        $credentials = $request->all();
 
 
+        if (Auth::attempt($credentials)) {
+
+            $user = Auth::user();
+            $result = $user->createToken($request->email);
+
+            return $this->handleResponse(true, $result, 'Пользователь авторизован!', 200);
+
+        }else{
+
+            return $this->handleResponse(false, $validator->errors(), 'Ошибка авторизации!', 200);
+
+        }
     }
 
 }
