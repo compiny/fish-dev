@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('email')->unique();
-            $table->boolean('actEmail')->default(false);
+            $table->boolean('active')->default(false);
+            $table->string('code')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

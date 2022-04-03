@@ -7,11 +7,39 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    public function activate(Request $request){
+
+
+        $validator = Validator::make($request->all(), [
+           'code' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return $this->handleResponse(false, $validator->errors(), 'Ошибка проверки секретного кода!', 200);
+        }
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+            'code' => $request->code,
+        ];
+
+
+        if (Auth::validate($credentials)){
+
+        }
+
+
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,14 +54,15 @@ class AuthController extends Controller
             'repassword' => 'required|same:password',
         ]);
 
-
         if($validator->fails()){
             return $this->handleResponse(false, $validator->errors(), 'Ошибка проверки!', 200);
         }
 
+
         $data = [
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'code' => rand(10000, 99999),
         ];
 
         $user = User::create($data);
@@ -70,5 +99,6 @@ class AuthController extends Controller
 
         }
     }
+
 
 }
