@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ContactResource;
+use App\Models\TypeContact;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 
@@ -13,8 +14,10 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $q = $request->query('query');
+
         return ContactResource::collection(Contact::paginate());
     }
 
