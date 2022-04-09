@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Http\Resources\ProjectResource;
 use Illuminate\Http\Request;
 
 
@@ -15,8 +16,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Project::all()
-            ->toJson();
+        return ProjectResource::collection(Project::paginate());
     }
 
     /**
@@ -59,7 +59,7 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        return new ProjectResource(Project::findOrFail($id));
     }
 
     /**
@@ -69,9 +69,11 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $project = Project::findOrFail($request->id);
+        $project->fill($request->all());
+        $project->save();
     }
 
     /**
