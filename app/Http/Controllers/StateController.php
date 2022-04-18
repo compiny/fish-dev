@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
-use App\Models\User;
+use App\Models\State;
+use App\Http\Resources\StateResource;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class StateController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return UserResource::collection(User::paginate());
+        return StateResource::collection(State::paginate());
     }
 
     /**
@@ -36,20 +36,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
+        State::create([
             'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\sf  $sf
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
     }
@@ -57,38 +55,35 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\sf  $sf
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        return new UserResource(User::findOrFail($id));
+        return new StateResource(State::findOrFail($id));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\sf  $sf
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        $user = User::findOrFail($request->id);
-        $user->fill([
-            'name' => $request->name,
-            'email' => $request->email
-        ]);
-        $user->save();
+        $state = State::findOrFail($request->id);
+        $state->fill($request->all());
+        $state->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\sf  $sf
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
         //
     }

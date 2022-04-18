@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
-use App\Models\User;
+use App\Http\Resources\VendorResource;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class VendorController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return UserResource::collection(User::paginate());
+        return VendorResource::collection(Vendor::paginate());
     }
 
     /**
@@ -36,10 +36,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
+        Vendor::create([
             'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
         ]);
     }
 
@@ -62,7 +60,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return new UserResource(User::findOrFail($id));
+        return new VendorResource(Vendor::findOrFail($id));
     }
 
     /**
@@ -74,12 +72,11 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        $user = User::findOrFail($request->id);
-        $user->fill([
+        $item = Vendor::findOrFail($request->id);
+        $item->fill([
             'name' => $request->name,
-            'email' => $request->email
         ]);
-        $user->save();
+        $item->save();
     }
 
     /**

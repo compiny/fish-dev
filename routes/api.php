@@ -1,20 +1,15 @@
 <?php
-
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-*/
-
-Route::post('/reg', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::group(['middleware' => 'auth:api'], function() {
@@ -22,6 +17,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/users', [UserController::class, 'update'])->name('users.update');
+    Route::post('/users/create', [UserController::class, 'store'])->name('users.create');
 
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
     Route::get('/projects/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
@@ -35,4 +31,14 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
     Route::get('/customers/{id}', [CustomerController::class, 'edit'])->name('customers.edit');
     Route::post('/customers', [CustomerController::class, 'update'])->name('customers.update');
+
+    Route::get('/states', [StateController::class, 'index'])->name('states');
+    Route::get('/states/{id}', [StateController::class, 'edit'])->name('states.edit');
+    Route::post('/states', [StateController::class, 'update'])->name('states.update');
+    Route::post('/states/create', [StateController::class, 'store'])->name('users.store');
+
+    Route::get('/vendors', [VendorController::class, 'index'])->name('vendors');
+    Route::get('/vendors/{id}', [VendorController::class, 'edit'])->name('vendors.edit');
+    Route::post('/vendors', [VendorController::class, 'update'])->name('vendors.update');
+    Route::post('/vendors/create', [VendorController::class, 'store'])->name('vendors.create');
 });

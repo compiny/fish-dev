@@ -74,31 +74,23 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
+
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
 
         if($validator->fails()){
-            return $this->handleResponse(false, $validator->errors(), 'Ошибка проверки!', 200);
+            return $this->handleResponse(false, $validator->errors(), 'Ошибка авторизации!', 200);
         }
-
         $credentials = $request->all();
 
-
         if (Auth::attempt($credentials)) {
-
             $user = Auth::user();
             $result = $user->createToken($request->email);
-
             return $this->handleResponse(true, $result, 'Пользователь авторизован!', 200);
-
         }else{
-
             return $this->handleResponse(false, $validator->errors(), 'Ошибка авторизации!', 200);
-
         }
     }
-
-
 }
