@@ -3,7 +3,10 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\TroubleController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Http\Request;
@@ -41,4 +44,20 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/vendors/{id}', [VendorController::class, 'edit'])->name('vendors.edit');
     Route::post('/vendors', [VendorController::class, 'update'])->name('vendors.update');
     Route::post('/vendors/create', [VendorController::class, 'store'])->name('vendors.create');
+
+    Route::get('/troubles', [TroubleController::class, 'index'])->name('troubles');
+    Route::get('/troubles/{id}', [TroubleController::class, 'edit'])->name('troubles.edit');
+    Route::post('/troubles', [TroubleController::class, 'update'])->name('troubles.update');
+    Route::post('/troubles/create', [TroubleController::class, 'store'])->name('troubles.create');
+
+    Route::get('/services', [ServiceController::class, 'index'])->name('services');
+    Route::get('/services/{id}', [ServiceController::class, 'edit'])->name('services.edit');
+    Route::post('/services', [ServiceController::class, 'update'])->name('services.update');
+    Route::post('/services/create', [ServiceController::class, 'store'])->name('services.create');
+
+    Route::get('/types', [TypeController::class, 'index'])->name('types');
+    Route::get('/types/{id}', [TypeController::class, 'edit'])->name('types.edit');
+    Route::post('/types', [TypeController::class, 'update'])->name('types.update');
+    Route::post('/types/create', [TypeController::class, 'store'])->name('types.create');
+
 });

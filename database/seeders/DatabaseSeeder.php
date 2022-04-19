@@ -22,7 +22,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             StateSeeder::class,
+            TroubleSeeder::class,
             VendorSeeder::class,
+            ServiceSeeder::class,
+            TypeSeeder::class,
         ]);
          User::factory(10)->create();
          Customer::factory(100)->create();
