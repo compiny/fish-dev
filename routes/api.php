@@ -1,7 +1,9 @@
 <?php
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BundleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StateController;
@@ -25,6 +27,10 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
     Route::get('/projects/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::post('/projects', [ProjectController::class, 'update'])->name('projects.update');
+
+    Route::get('/devs', [ProjectController::class, 'index'])->name('devs');
+    Route::get('/devs/{id}', [ProjectController::class, 'edit'])->name('devs.edit');
+    Route::post('/devs', [ProjectController::class, 'update'])->name('devs.update');
 
 
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
@@ -59,5 +65,13 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/types/{id}', [TypeController::class, 'edit'])->name('types.edit');
     Route::post('/types', [TypeController::class, 'update'])->name('types.update');
     Route::post('/types/create', [TypeController::class, 'store'])->name('types.create');
+
+    Route::get('/bundles', [BundleController::class, 'index'])->name('bundles');
+    Route::get('/bundles/{id}', [BundleController::class, 'edit'])->name('bundles.edit');
+    Route::post('/bundles', [BundleController::class, 'update'])->name('bundles.update');
+    Route::post('/bundles/create', [BundleController::class, 'store'])->name('bundles.create');
+
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 });

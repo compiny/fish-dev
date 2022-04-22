@@ -17,6 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->text('description')->nullable();
+            $table->text('troubles')->nullable();
+            $table->bigInteger('type_id')->unsigned();
+            $table->foreign('type_id')->references('id')->on('types')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->bigInteger('vendor_id')->unsigned();
+            $table->foreign('vendor_id')->references('id')->on('vendors')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->bigInteger('bundle_id')->unsigned();
+            $table->foreign('bundle_id')->references('id')->on('bundles')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

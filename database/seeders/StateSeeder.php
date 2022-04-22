@@ -17,12 +17,19 @@ class StateSeeder extends Seeder
     {
         DB::table('states')->insert([
             'name' => 'Принято',
+            'deleted' => false,
         ]);
         DB::table('states')->insert([
             'name' => 'Диагностика',
+            'deleted' => false,
         ]);
         DB::table('states')->insert([
             'name' => 'Ждем запчасти',
+            'deleted' => false,
+        ]);
+        DB::table('states')->insert([
+            'name' => 'Ожидание',
+            'deleted' => true,
         ]);
     }
 }

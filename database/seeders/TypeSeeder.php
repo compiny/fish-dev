@@ -15,13 +15,13 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('services')->insert([
+        DB::table('types')->insert([
             'name' => 'Ноутбук',
         ]);
-        DB::table('services')->insert([
+        DB::table('types')->insert([
             'name' => 'Планшет',
         ]);
-        DB::table('services')->insert([
+        DB::table('types')->insert([
             'name' => 'Компьютер',
         ]);
     }

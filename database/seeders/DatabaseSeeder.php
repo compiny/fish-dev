@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             VendorSeeder::class,
             ServiceSeeder::class,
             TypeSeeder::class,
+            BundleSeeder::class,
         ]);
          User::factory(10)->create();
          Customer::factory(100)->create();

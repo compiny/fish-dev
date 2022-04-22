@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Bundle;
+use App\Models\Customer;
 use App\Models\State;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,9 +22,11 @@ class StoreProjectFactory extends Factory
     {
         $idUsers = User::all()->getQueueableIds();
         $idStates = State::all()->getQueueableIds();
+        $idCustomers = Customer::all()->getQueueableIds();
         return [
             'user_id' => $this->faker->randomElement($idUsers),
             'project_id' => $this->faker->randomElement($idStates),
+            'customer_id' => $this->faker->randomElement($idCustomers),
         ];
     }
 }
