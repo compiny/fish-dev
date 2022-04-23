@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Http\Resources\User;
+use App\Models\MetaDev;
 use App\Models\Project;
 use App\Http\Resources\ProjectResource;
+use App\Http\Resources\CreateProjectResource;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
 
@@ -26,7 +31,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return new CreateProjectResource(MetaDev::factory());
     }
 
     /**
@@ -86,4 +91,5 @@ class ProjectController extends Controller
     {
         //
     }
+
 }

@@ -3,6 +3,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BundleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\MetaDevsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
@@ -23,10 +24,13 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/users', [UserController::class, 'update'])->name('users.update');
     Route::post('/users/create', [UserController::class, 'store'])->name('users.create');
-
+/*
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
     Route::get('/projects/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::post('/projects', [ProjectController::class, 'update'])->name('projects.update');
+*/
+    Route::get('/projects/create', [ProjectController::class, 'create']);
+
 
     Route::get('/devs', [ProjectController::class, 'index'])->name('devs');
     Route::get('/devs/{id}', [ProjectController::class, 'edit'])->name('devs.edit');
