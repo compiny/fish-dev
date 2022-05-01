@@ -21,14 +21,14 @@ class ProjectFactory extends Factory
     {
         $idVendors = Vendor::all()->getQueueableIds();
         $idTypes = Type::all()->getQueueableIds();
-        $idBundles = Bundle::all()->getQueueableIds();
+        //$idBundles = Bundle::all()->getQueueableIds();
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(50),
             'troubles' => $this->faker->text(50),
             'vendor_id' => $this->faker->randomElement($idVendors),
             'type_id' => $this->faker->randomElement($idTypes),
-            'bundle_id' => $this->faker->randomElement($idBundles),
+            //'bundle_id' => $this->faker->randomElement($idBundles),
         ];
     }
 }

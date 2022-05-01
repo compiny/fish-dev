@@ -12,5 +12,10 @@ class Bundle extends Model
     protected $fillable = [
         'id',
         'name',
+        'type',
     ];
+
+    public function tps(){
+        return $this->hasOne(Type::class, 'id', 'type_id');
+    }
 }

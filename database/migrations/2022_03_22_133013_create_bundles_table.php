@@ -16,6 +16,12 @@ return new class extends Migration
         Schema::create('bundles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->bigInteger('type_id')->unsigned();
+            $table->foreign('type_id')
+                ->references('id')
+                ->on('types')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }

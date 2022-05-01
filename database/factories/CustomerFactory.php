@@ -22,6 +22,9 @@ class CustomerFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
+            'phone' => $this->faker->phoneNumber(),
+            'email' => $this->faker->email(),
+            'adr' => $this->faker->address(),
             'user_id' => $this->faker->randomElement($ids),
         ];
     }

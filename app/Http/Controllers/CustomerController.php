@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Http\Resources\CustomerResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -13,7 +17,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $items = Customer::all();
+
+        return CustomerResource::collection($items);
     }
 
     /**
@@ -34,7 +40,14 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        Customer::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'description' => $request->description,
+            'user_id' => $user->id,
+        ]);
     }
 
     /**
@@ -56,7 +69,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        return new CustomerResource(Customer::findOrFail($id));
     }
 
     /**
@@ -66,9 +79,18 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = Auth::user();
+        $customer = Customer::findOrFail($request->id);
+        $customer->fill([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'description' => $request->description,
+            'user_id' => $user->id,
+        ]);
+        $customer->save();
     }
 
     /**

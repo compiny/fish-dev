@@ -30,11 +30,18 @@ class MetaDev extends Model
         return Type::all()->toArray();
     }
 
+    private static function bundles():array
+    {
+        return Bundle::all()->toArray();
+    }
+
     static function factory()
     {
         $arr = [
             'vendors' => self::vendor(),
-            'troublres' => self::troubles()
+            'troubles' => self::troubles(),
+            'types' => self::types(),
+            'bundles' => self::bundles()
         ];
         return $arr;
     }

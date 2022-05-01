@@ -15,11 +15,14 @@ class BundleSeeder extends Seeder
      */
     public function run()
     {
+
+/*
         DB::table('bundles')->insert([
             'name' => 'Коробка',
         ]);
         DB::table('bundles')->insert([
             'name' => 'Кабель',
         ]);
+*/
     }
 }

@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string('n')->nullable();
+            $table->date('date')->nullable();
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->text('troubles')->nullable();
@@ -22,8 +24,8 @@ return new class extends Migration
             $table->foreign('type_id')->references('id')->on('types')->cascadeOnDelete()->cascadeOnUpdate();
             $table->bigInteger('vendor_id')->unsigned();
             $table->foreign('vendor_id')->references('id')->on('vendors')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->bigInteger('bundle_id')->unsigned();
-            $table->foreign('bundle_id')->references('id')->on('bundles')->cascadeOnDelete()->cascadeOnUpdate();
+            //$table->bigInteger('bundle_id')->unsigned();
+            //$table->foreign('bundle_id')->references('id')->on('bundles')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

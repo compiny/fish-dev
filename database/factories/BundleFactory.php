@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,18 @@ class BundleFactory extends Factory
      */
     public function definition()
     {
+        $idTypes = Type::all()->getQueueableIds();
+        $complect = [
+          'Коробка',
+          'Кабель',
+          'Диск',
+          'Клавиатура',
+          'Мышь',
+          'Монитор',
+        ];
         return [
-            //
+            'name' => $this->faker->randomElement($complect),
+            'type_id' => $this->faker->randomElement($idTypes),
         ];
     }
 }

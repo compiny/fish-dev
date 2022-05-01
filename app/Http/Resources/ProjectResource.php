@@ -17,19 +17,11 @@ class ProjectResource extends JsonResource
      */
     public function toArray($request)
     {
-        $user = DB::table('store_projects')
-            ->join('projects', 'store_projects.project_id', '=', 'projects.id')
-            ->join('users', 'store_projects.user_id', '=', 'users.id')
-            ->where('projects.id', '=', $this->id)
-            ->select('projects.id', 'projects.name', 'users.name')
-            ->orderBy('store_projects.id', 'asc')
-            ->get()
-        ->first();
-
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'user' =>  $user
+            'project_id' => $this->project_id,
+            'customer_name' => $this->customer_name,
+            'project_name' => $this->project_name,
+            'created_at' => date('d.m.Y', strtotime( $this->created_at )),
         ];
     }
 
