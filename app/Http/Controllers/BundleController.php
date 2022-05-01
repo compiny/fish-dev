@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BundleResource;
+use App\Http\Resources\CreateBundleResource;
 use App\Models\Bundle;
+//use App\Models\MetaBundle;
 use Illuminate\Http\Request;
 
 class BundleController extends Controller
@@ -21,11 +23,11 @@ class BundleController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return CreateBundleResource
      */
     public function create()
     {
-        //
+        return new CreateBundleResource(MetaBundle::factory());
     }
 
     /**

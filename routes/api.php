@@ -20,7 +20,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::group(['middleware' => 'auth:api'], function() {
 
-    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/users', [UserController::class, 'update'])->name('users.update');
     Route::post('/users/create', [UserController::class, 'store'])->name('users.create');
@@ -71,10 +71,11 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/types', [TypeController::class, 'update'])->name('types.update');
     Route::post('/types/create', [TypeController::class, 'store'])->name('types.create');
 
-    Route::get('/bundles', [BundleController::class, 'index'])->name('bundles');
+    Route::get('/bundles', [BundleController::class, 'index'])->name('bundles.index');
     Route::get('/bundles/{id}', [BundleController::class, 'edit'])->name('bundles.edit');
     Route::post('/bundles', [BundleController::class, 'update'])->name('bundles.update');
-    Route::post('/bundles/create', [BundleController::class, 'store'])->name('bundles.create');
+    Route::post('/bundles/create', [BundleController::class, 'store'])->name('bundles.store');
+    Route::get('/bundles/create', [BundleController::class, 'create'])->name('bundles.create');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
