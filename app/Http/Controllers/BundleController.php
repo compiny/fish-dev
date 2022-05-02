@@ -39,7 +39,7 @@ class BundleController extends Controller
     public function store(Request $request)
     {
         Bundle::create([
-            'name' => $request->name,
+            'name' => $request->name_bundle,
             'type_id' => $request->type_id,
         ]);
     }
@@ -50,9 +50,9 @@ class BundleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        //
+        return new BundleResource(Bundle::findOrFail($id));
     }
 
     /**
@@ -77,7 +77,8 @@ class BundleController extends Controller
     {
         $item = Bundle::findOrFail($request->id);
         $item->fill([
-            'name' => $request->name,
+            'name' => $request->name_bundle,
+            'type_id' => $request->type_id,
         ]);
         $item->save();
     }

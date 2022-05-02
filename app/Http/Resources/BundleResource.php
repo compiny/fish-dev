@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Type;
 
 class BundleResource extends JsonResource
 {
@@ -20,6 +21,7 @@ class BundleResource extends JsonResource
             'name_bundle' => $this->name,
             'type' => $this->tps->name,
             'type_id' => $this->tps->id,
+            'types' => Type::all('id', 'name')
         ];
 
         //return parent::toArray($request);

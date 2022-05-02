@@ -10,7 +10,6 @@ class Bundle extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'name',
         'type_id',
     ];
