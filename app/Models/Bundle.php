@@ -12,7 +12,7 @@ class Bundle extends Model
     protected $fillable = [
         'id',
         'name',
-        'type',
+        'type_id',
     ];
 
     public function tps(){

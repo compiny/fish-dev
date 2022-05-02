@@ -23,12 +23,19 @@ class MetaBundle extends Model
         return Bundle::all()->toArray();
     }
 
-    static function factory()
+    static function factory($obj)
     {
-        $arr = [
-            'types' => self::types(),
-            'bundles' => self::bundles()
-        ];
+        $arr = [];
+        if ($obj == 'types'){
+            $arr = [
+                'types' => self::types(),
+            ];
+        }
+        if ($obj == 'bundles'){
+            $arr = [
+                'bundles' => self::bundles()
+            ];
+        }
         return $arr;
     }
 }

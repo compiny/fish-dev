@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\BundleResource;
 use App\Http\Resources\CreateBundleResource;
 use App\Models\Bundle;
-//use App\Models\MetaBundle;
+use App\Models\MetaBundle;
 use Illuminate\Http\Request;
 
 class BundleController extends Controller
@@ -27,7 +27,7 @@ class BundleController extends Controller
      */
     public function create()
     {
-        return new CreateBundleResource(MetaBundle::factory());
+        return new CreateBundleResource(MetaBundle::factory('types'));
     }
 
     /**
@@ -40,6 +40,7 @@ class BundleController extends Controller
     {
         Bundle::create([
             'name' => $request->name,
+            'type_id' => $request->type_id,
         ]);
     }
 
@@ -49,7 +50,7 @@ class BundleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
     }
