@@ -14,6 +14,12 @@ class Bundle extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name_bundle' => $this->name,
+            'type' => $this->tps->name,
+            'type_id' => $this->tps->id,
+            'types' => Type::all('id', 'name')
+        ];
     }
 }

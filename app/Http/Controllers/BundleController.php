@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\BundleResource;
 use App\Http\Resources\CreateBundleResource;
+use App\Http\Resources\DevBundleResource;
 use App\Models\Bundle;
 use App\Models\MetaBundle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BundleController extends Controller
 {
@@ -15,9 +17,19 @@ class BundleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return BundleResource::collection(Bundle::paginate());
+        $param = $request->input();
+        if($param){
+            $data = DB::table('bundles')
+                ->where('type_id', '=', $param['type_id'])
+                ->get();
+            return new DevBundleResource($data);
+        }else{
+            $data = Bundle::all();
+            return BundleResource::collection($data);
+        }
+
     }
 
     /**

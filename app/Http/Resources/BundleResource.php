@@ -23,7 +23,5 @@ class BundleResource extends JsonResource
             'type_id' => $this->tps->id,
             'types' => Type::all('id', 'name')
         ];
-
-        //return parent::toArray($request);
     }
 }
