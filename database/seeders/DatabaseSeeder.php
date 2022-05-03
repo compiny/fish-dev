@@ -5,7 +5,9 @@ namespace Database\Seeders;
 use App\Models\Bundle;
 use App\Models\Contact;
 use App\Models\Customer;
+use App\Models\Dev;
 use App\Models\Project;
+use App\Models\StoreBundle;
 use App\Models\StoreProject;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -33,5 +35,7 @@ class DatabaseSeeder extends Seeder
          StoreProject::factory(100)->create();
          Contact::factory(100)->create();
          Bundle::factory(10)->create();
+         Dev::factory(500)->create();
+         StoreBundle::factory(500)->create();
     }
 }

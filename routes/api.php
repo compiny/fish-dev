@@ -3,6 +3,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BundleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DevController;
 use App\Http\Controllers\MetaDevsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -29,12 +30,12 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/projects/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::post('/projects', [ProjectController::class, 'update'])->name('projects.update');
 */
-    Route::get('/projects/create', [ProjectController::class, 'create']);
+    //Route::get('/projects/create', [ProjectController::class, 'create']);
 
 
-    Route::get('/devs', [ProjectController::class, 'index'])->name('devs');
-    Route::get('/devs/{id}', [ProjectController::class, 'edit'])->name('devs.edit');
-    Route::post('/devs', [ProjectController::class, 'update'])->name('devs.update');
+    Route::get('/devs', [DevController::class, 'index'])->name('dev');
+    Route::get('/devs/{id}', [DevController::class, 'edit'])->name('dev.edit');
+    Route::get('/create/dev', [DevController::class, 'create'])->name('dev.create');
 
 
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');

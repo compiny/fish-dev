@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Http\Resources\User;
+use App\Http\Resources\DevResource;
+use App\Models\Dev;
 use App\Models\MetaDev;
-use App\Http\Resources\CreateDevResource;
-use App\Models\Vendor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Resources\CreateDevResource;
 
-
-class ProjectController extends Controller
+class DevController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,19 +18,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-       // $user = Auth::user();
+        // $user = Auth::user();
 
-        $data = DB::table('store_projects')
-            ->join('projects', 'projects.id', '=', 'store_projects.project_id')
-            ->leftJoin('users', 'users.id', '=', 'store_projects.user_id')
-            ->leftJoin('customers', 'customers.id', '=', 'store_projects.customer_id')
-            //->where('store_projects.user_id', '=', $user->id)
-            ->select('projects.created_at', DB::raw('projects.id as project_id'), DB::raw('customers.name as customer_name'))
-            //->orderBy('store_projects.project_id', 'DESC')
-            ->get();
-        dd($data);
+        $data = Dev::all();
 
-        return ProjectResource::collection($data);
+       return DevResource::collection($data);
     }
 
     /**
@@ -76,7 +65,7 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        return new ProjectResource(Project::findOrFail($id));
+        return new DevResource(Dev::findOrFail($id));
     }
 
     /**
@@ -86,11 +75,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $project = Project::findOrFail($request->id);
-        $project->fill($request->all());
-        $project->save();
+        //
     }
 
     /**
@@ -103,5 +90,4 @@ class ProjectController extends Controller
     {
         //
     }
-
 }
