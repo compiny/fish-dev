@@ -9,6 +9,7 @@ use App\Models\Dev;
 use App\Models\Project;
 use App\Models\StoreBundle;
 use App\Models\StoreProject;
+use App\Models\StoreState;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -37,5 +38,6 @@ class DatabaseSeeder extends Seeder
          Bundle::factory(10)->create();
          Dev::factory(500)->create();
          StoreBundle::factory(500)->create();
+         StoreState::factory(500)->create();
     }
 }

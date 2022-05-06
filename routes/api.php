@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\StoreStateController;
 use App\Http\Controllers\TroubleController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
@@ -50,7 +51,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/states', [StateController::class, 'index'])->name('states');
     Route::get('/states/{id}', [StateController::class, 'edit'])->name('states.edit');
     Route::post('/states', [StateController::class, 'update'])->name('states.update');
-    Route::post('/states/create', [StateController::class, 'store'])->name('users.store');
+    Route::post('/create/state', [StateController::class, 'store'])->name('states.store');
 
     Route::get('/vendors', [VendorController::class, 'index'])->name('vendors');
     Route::get('/vendors/{id}', [VendorController::class, 'edit'])->name('vendors.edit');
@@ -83,5 +84,8 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    //добавления статуса
+    Route::post('/create/store_state', [StoreStateController::class, 'store'])->name('store_state.store');
 
 });

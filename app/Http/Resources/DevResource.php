@@ -5,16 +5,11 @@ namespace App\Http\Resources;
 use App\Models\Vendor;
 use App\Models\Type;
 use App\Models\Trouble;
+use App\Models\State;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DevResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
     public function toArray($request)
     {
         return [
@@ -32,6 +27,7 @@ class DevResource extends JsonResource
             'final' => $this->final,
             'notification' => $this->notification,
             'address' => $this->address,
+            'states' => (new \App\Models\StoreState)->getStateDev($this->id)
         ];
     }
     public function with($request)
@@ -40,7 +36,8 @@ class DevResource extends JsonResource
             'spr' => [
                 'vendors' => Vendor::all(),
                 'types' => Type::all(),
-                'troubles' => Trouble::all()
+                'troubles' => Trouble::all(),
+                'states' => State::all('id', 'name')
             ],
         ];
     }
