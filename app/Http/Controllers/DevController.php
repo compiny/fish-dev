@@ -6,30 +6,15 @@ use App\Http\Resources\DevResource;
 use App\Models\Dev;
 use App\Models\MetaDev;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Resources\CreateDevResource;
 
 class DevController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        // $user = Auth::user();
-
-        $data = Dev::all();
-
-       return DevResource::collection($data);
+        return DevResource::collection(Dev::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return new CreateDevResource(MetaDev::factory());
