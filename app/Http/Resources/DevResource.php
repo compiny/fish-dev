@@ -16,17 +16,14 @@ class DevResource extends JsonResource
             'id' => $this->id,
             'n' => $this->n,
             'date' => $this->date,
-            'customer_name' => $this->customer->name,
-            'customer_id' => $this->customer->id,
+            'customer' => $this->customer,
             'sn' => $this->sn,
-            'phone' => $this->customer->phone,
             'troubles_text' => $this->troubles,
             'bundles' => $this->bundles,
             'type_id' => $this->type_id,
             'vendor_id' => $this->vendor_id,
             'final' => $this->final,
             'notification' => $this->notification,
-            'address' => $this->address,
             'states' => (new \App\Models\StoreState)->getStateDev($this->id)
         ];
     }
