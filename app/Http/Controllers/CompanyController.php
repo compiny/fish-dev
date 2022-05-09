@@ -16,56 +16,59 @@ class CompanyController extends Controller
         return CompanyResource::collection(Company::all()->where('dirID', $user->id));
     }
 
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        Company::create([
+            'name' => $request->name,
+            'nameOff' => $request->nameOff,
+            'inn' => $request->inn,
+            'kpp' => $request->kpp,
+            'ogrn' => $request->ogrn,
+            'email' => $request->email,
+            'urAdr' => $request->urAdr,
+            'factAdr' => $request->factAdr,
+            'mailAdr' => $request->mailAdr,
+            'phones' => $request->phones,
+            'web' => $request->web,
+            'about' => $request->about,
+            'dataReg' => $request->dataReg,
+            'dataClose' => $request->dataClose,
+            'dirID' => $request->dirID,
+            'ownerID' => $user->id,
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return new CompanyResource(Company::findOrFail($id));
     }
 
-    public function edit($id)
-    {
-        //return new CompanyResource(Company::findOrFail($id));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $user = Auth::user();
+        $item = Company::findOrFail($request->id);
+        $item->fill([
+            'name' => $request->name,
+            'nameOff' => $request->nameOff,
+            'inn' => $request->inn,
+            'kpp' => $request->kpp,
+            'ogrn' => $request->ogrn,
+            'email' => $request->email,
+            'urAdr' => $request->urAdr,
+            'factAdr' => $request->factAdr,
+            'mailAdr' => $request->mailAdr,
+            'phones' => $request->phones,
+            'web' => $request->web,
+            'about' => $request->about,
+            'dataReg' => $request->dataReg,
+            'dataClose' => $request->dataClose,
+            'dirID' => $request->dirID,
+            'ownerID' => $user->id,
+        ]);
+        $item->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
