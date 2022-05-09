@@ -81,7 +81,13 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/bundle/store', [BundleController::class, 'store'])->name('bundle.store');
     Route::get('/bundle/create', [BundleController::class, 'create'])->name('bundle.create');
 
-    Route::apiResource('companies', CompanyController::class);
+    //Route::apiResource('companies', CompanyController::class);
+
+    Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+    Route::get('/companies/{id}', [CompanyController::class, 'edit'])->name('companies.edit');
+    Route::post('/companies', [CompanyController::class, 'update'])->name('companies.update');
+    Route::post('/companies/store', [CompanyController::class, 'store'])->name('companies.store');
+    Route::get('/create/companies', [CompanyController::class, 'create'])->name('companies.create');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
