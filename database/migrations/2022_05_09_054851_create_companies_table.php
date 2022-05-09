@@ -41,6 +41,12 @@ return new class extends Migration
                 ->on('users')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+            $table->bigInteger('ownerID')->unsigned();
+            $table->foreign('ownerID')
+                ->references('id')
+                ->on('users')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }
