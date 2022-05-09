@@ -33,7 +33,6 @@ class CompanyResource extends JsonResource
             'dirID' => $this->dirID,
             'dirName' => $this->direktor->name,
             'buhName' => $this->buhgalter->name,
-            //'buhName' => $this->user->name,
         ];
     }
 }
