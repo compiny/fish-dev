@@ -31,6 +31,7 @@ class CompanySeeder extends Seeder
             'dateReg' => '15.12.2000',
             'dirID' => 1,
             'buhID' => 1,
+            'ownerID' => 1,
         ]);
         DB::table('companies')->insert([
             'name' => 'ООО Компини',
@@ -48,6 +49,7 @@ class CompanySeeder extends Seeder
             'dateReg' => '15.12.2000',
             'dirID' => 1,
             'buhID' => 1,
+            'ownerID' => 1,
         ]);
     }
 }
