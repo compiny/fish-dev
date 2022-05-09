@@ -23,21 +23,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         $this->call([
+            UserSeeder::class,
             StateSeeder::class,
             TroubleSeeder::class,
             VendorSeeder::class,
             ServiceSeeder::class,
             TypeSeeder::class,
         ]);
-         User::factory(10)->create();
+        User::factory(10)->create();
+        $this->call([
+            CompanySeeder::class,
+        ]);
          Customer::factory(100)->create();
          Project::factory(100)->create();
          StoreProject::factory(100)->create();
          Contact::factory(100)->create();
          Bundle::factory(10)->create();
-         Dev::factory(500)->create();
-         StoreBundle::factory(500)->create();
-         StoreState::factory(500)->create();
+         Dev::factory(100)->create();
+         StoreBundle::factory(100)->create();
+         StoreState::factory(100)->create();
     }
 }

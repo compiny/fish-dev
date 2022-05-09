@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BundleController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DevController;
@@ -80,7 +81,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/bundle/store', [BundleController::class, 'store'])->name('bundle.store');
     Route::get('/bundle/create', [BundleController::class, 'create'])->name('bundle.create');
 
-    //Route::apiResource('bundles', BundleController::class);
+    Route::apiResource('companies', CompanyController::class);
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');

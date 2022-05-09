@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\DevResource;
-use App\Models\Dev;
-use App\Models\MetaDev;
+use App\Http\Resources\CompanyResource;
 use Illuminate\Http\Request;
-use App\Http\Resources\CreateDevResource;
+use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
 
-class DevController extends Controller
+class CompanyController extends Controller
 {
+
     public function index()
     {
-        return DevResource::collection(Dev::all());
+        $user = Auth::user();
+        return CompanyResource::collection(Company::all()->where('dirID', $user->id));
     }
 
     public function create()
     {
-        return new CreateDevResource(MetaDev::factory());
+        //
     }
 
     /**
@@ -39,12 +40,12 @@ class DevController extends Controller
      */
     public function show($id)
     {
-        //
+        return new CompanyResource(Company::findOrFail($id));
     }
 
-    public function edit($id): DevResource
+    public function edit($id)
     {
-        return new DevResource(Dev::findOrFail($id));
+        //return new CompanyResource(Company::findOrFail($id));
     }
 
     /**
