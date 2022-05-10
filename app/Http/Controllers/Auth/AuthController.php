@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -73,16 +74,8 @@ class AuthController extends Controller
 
     }
 
-    public function login(Request $request){
+    public function login(LoginRequest $request){
 
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ]);
-
-        if($validator->fails()){
-            return $this->handleResponse(false, $validator->errors(), 'Ошибка авторизации!', 200);
-        }
         $credentials = $request->all();
 
         if (Auth::attempt($credentials)) {
@@ -90,7 +83,7 @@ class AuthController extends Controller
             $result = $user->createToken($request->email);
             return $this->handleResponse(true, $result, 'Пользователь авторизован!', 200);
         }else{
-            return $this->handleResponse(false, $validator->errors(), 'Ошибка авторизации!', 200);
+            return $this->handleResponse(false, $request->errors(), 'Ошибка авторизации!', 200);
         }
     }
 }

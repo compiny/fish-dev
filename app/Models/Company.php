@@ -7,6 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
+    protected $fillable = [
+        'name',
+        'nameOff',
+        'inn',
+        'kpp',
+        'ogrn',
+        'phones',
+        'urAdr',
+        'factAdr',
+        'email',
+        'offAdr',
+        'mailAdr',
+        'buhID',
+        'dirID',
+        'ownerID',
+        'about',
+        'web',
+    ];
+
     use HasFactory;
 
     public function direktor()

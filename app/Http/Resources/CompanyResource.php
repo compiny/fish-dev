@@ -31,6 +31,7 @@ class CompanyResource extends JsonResource
             'dataReg' => $this->dataReg,
             'dataClose' => $this->dataClose,
             'dirID' => $this->dirID,
+            'buhID' => $this->buhID,
             'dirName' => $this->direktor->name,
             'buhName' => $this->buhgalter->name,
         ];

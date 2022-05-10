@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/users', [UserController::class, 'update'])->name('users.update');
-    Route::post('/users/create', [UserController::class, 'store'])->name('users.create');
+    Route::post('/create/users', [UserController::class, 'store'])->name('users.create');
 /*
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
     Route::get('/projects/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
@@ -84,10 +84,9 @@ Route::group(['middleware' => 'auth:api'], function() {
     //Route::apiResource('companies', CompanyController::class);
 
     Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
-    Route::get('/companies/{id}', [CompanyController::class, 'edit'])->name('companies.edit');
+    Route::get('/companies/{id}', [CompanyController::class, 'show'])->name('companies.show');
     Route::post('/companies', [CompanyController::class, 'update'])->name('companies.update');
-    Route::post('/companies/store', [CompanyController::class, 'store'])->name('companies.store');
-    Route::get('/create/companies', [CompanyController::class, 'create'])->name('companies.create');
+    Route::post('/create/companies', [CompanyController::class, 'store'])->name('companies.create');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');

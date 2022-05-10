@@ -20,14 +20,14 @@ return new class extends Migration
             $table->string('inn');
             $table->string('kpp');
             $table->string('ogrn');
-            $table->string('urAdr');
-            $table->string('mailAdr');
-            $table->string('factAdr');
-            $table->string('email');
-            $table->string('phones');
-            $table->string('web');
-            $table->string('about');
-            $table->date('dateReg');
+            $table->string('urAdr')->nullable();;
+            $table->string('mailAdr')->nullable();;
+            $table->string('factAdr')->nullable();;
+            $table->string('email')->nullable();;
+            $table->string('phones')->nullable();;
+            $table->string('web')->nullable();;
+            $table->string('about')->nullable();;
+            $table->date('dateReg')->nullable();;
             $table->date('dateClose')->nullable();
             $table->bigInteger('dirID')->unsigned();
             $table->foreign('dirID')

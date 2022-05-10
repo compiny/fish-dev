@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompanyRequest;
+use App\Http\Requests\StoreCompanyRequest;
+use App\Http\Requests\UpdateCompanyRequest;
 use App\Http\Resources\CompanyResource;
 use Illuminate\Http\Request;
 use App\Models\Company;
@@ -12,11 +15,10 @@ class CompanyController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
-        return CompanyResource::collection(Company::all()->where('dirID', $user->id));
+        return CompanyResource::collection(Company::all());
     }
 
-    public function store(Request $request)
+    public function store(StoreCompanyRequest $request)
     {
         $user = Auth::user();
         Company::create([
@@ -35,6 +37,7 @@ class CompanyController extends Controller
             'dataReg' => $request->dataReg,
             'dataClose' => $request->dataClose,
             'dirID' => $request->dirID,
+            'buhID' => $request->buhID,
             'ownerID' => $user->id,
         ]);
     }
@@ -44,7 +47,7 @@ class CompanyController extends Controller
         return new CompanyResource(Company::findOrFail($id));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateCompanyRequest $request)
     {
         $user = Auth::user();
         $item = Company::findOrFail($request->id);
@@ -64,6 +67,7 @@ class CompanyController extends Controller
             'dataReg' => $request->dataReg,
             'dataClose' => $request->dataClose,
             'dirID' => $request->dirID,
+            'buhID' => $request->buhID,
             'ownerID' => $user->id,
         ]);
         $item->save();
