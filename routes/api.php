@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/services', [ServiceController::class, 'index'])->name('services');
     Route::get('/services/{id}', [ServiceController::class, 'edit'])->name('services.edit');
     Route::post('/services', [ServiceController::class, 'update'])->name('services.update');
-    Route::post('/services/create', [ServiceController::class, 'store'])->name('services.create');
+    Route::post('/create/services', [ServiceController::class, 'store'])->name('services.create');
 
     Route::get('/types', [TypeController::class, 'index'])->name('types');
     Route::get('/types/{id}', [TypeController::class, 'edit'])->name('types.edit');
