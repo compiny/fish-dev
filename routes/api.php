@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/vendors', [VendorController::class, 'index'])->name('vendors');
     Route::get('/vendors/{id}', [VendorController::class, 'edit'])->name('vendors.edit');
     Route::post('/vendors', [VendorController::class, 'update'])->name('vendors.update');
-    Route::post('/vendors/create', [VendorController::class, 'store'])->name('vendors.create');
+    Route::post('/create/vendors', [VendorController::class, 'store'])->name('vendors.create');
 
     Route::get('/troubles', [TroubleController::class, 'index'])->name('troubles');
     Route::get('/troubles/{id}', [TroubleController::class, 'edit'])->name('troubles.edit');
