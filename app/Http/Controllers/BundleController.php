@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBundleRequest;
+use App\Http\Requests\UpdateBundleRequest;
 use App\Http\Resources\BundleResource;
 use App\Http\Resources\CreateBundleResource;
 use App\Http\Resources\DevBundleResource;
 use App\Models\Bundle;
 use App\Models\MetaBundle;
+use App\Models\StoreBundle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,10 +51,10 @@ class BundleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBundleRequest $request)
     {
         Bundle::create([
-            'name' => $request->name_bundle,
+            'name' => $request->name,
             'type_id' => $request->type_id,
         ]);
     }
@@ -85,11 +88,11 @@ class BundleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(UpdateBundleRequest $request)
     {
         $item = Bundle::findOrFail($request->id);
         $item->fill([
-            'name' => $request->name_bundle,
+            'name' => $request->name,
             'type_id' => $request->type_id,
         ]);
         $item->save();

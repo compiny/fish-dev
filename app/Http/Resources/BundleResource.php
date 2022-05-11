@@ -18,7 +18,7 @@ class BundleResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'name_bundle' => $this->name,
+            'name' => $this->name,
             'type' => $this->tps->name,
             'type_id' => $this->tps->id,
             'types' => Type::all('id', 'name')
