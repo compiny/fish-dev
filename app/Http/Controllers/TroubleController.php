@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTroubleRequest;
+use App\Http\Requests\UpdateTroubleRequest;
 use App\Http\Resources\TroubleResource;
 use App\Models\Trouble;
 use Illuminate\Http\Request;
@@ -34,7 +36,7 @@ class TroubleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTroubleRequest $request)
     {
         Trouble::create([
             'name' => $request->name,
@@ -70,7 +72,7 @@ class TroubleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(UpdateTroubleRequest $request)
     {
         $item = Trouble::findOrFail($request->id);
         $item->fill([
