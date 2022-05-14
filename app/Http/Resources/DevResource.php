@@ -13,6 +13,7 @@ use Illuminate\Session\Store;
 class DevResource extends JsonResource
 {
 
+
     public function toArray($request): array
     {
         return [
@@ -30,6 +31,7 @@ class DevResource extends JsonResource
             'states' => (new \App\Models\StoreState)->getStateDev($this->id)
         ];
     }
+
     public function with($request)
     {
         return [
@@ -42,4 +44,5 @@ class DevResource extends JsonResource
             ],
         ];
     }
+
 }

@@ -40,6 +40,7 @@ class CustomerController extends Controller
         $customer = Customer::create([
             'name' => $request->name,
             'email' => $request->email,
+            'adr' => $request->adr,
             'phone' => $request->phone,
             'description' => $request->description,
             'user_id' => $user->id,
@@ -76,6 +77,7 @@ class CustomerController extends Controller
         $customer->fill([
             'name' => $request->name,
             'email' => $request->email,
+            'adr' => $request->adr,
             'phone' => $request->phone,
             'description' => $request->description,
             'user_id' => $user->id,

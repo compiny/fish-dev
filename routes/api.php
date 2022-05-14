@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
     Route::get('/customers/{id}', [CustomerController::class, 'edit'])->name('customers.edit');
     Route::post('/customers', [CustomerController::class, 'update'])->name('customers.update');
-    Route::post('/customers/create', [CustomerController::class, 'store'])->name('customers.create');
+    Route::post('/create/customers', [CustomerController::class, 'store'])->name('customers.create');
 
     Route::get('/states', [StateController::class, 'index'])->name('states');
     Route::get('/states/{id}', [StateController::class, 'edit'])->name('states.edit');

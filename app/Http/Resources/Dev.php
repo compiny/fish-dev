@@ -16,4 +16,5 @@ class Dev extends ResourceCollection
     {
         return parent::toArray($request);
     }
+
 }

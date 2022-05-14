@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DevCollection;
 use App\Http\Resources\DevResource;
-use App\Models\Dev;
 use App\Models\MetaDev;
+use App\Models\Dev;
 use Illuminate\Http\Request;
 use App\Http\Resources\CreateDevResource;
+use Illuminate\Support\Facades\DB;
 
 class DevController extends Controller
 {
     public function index()
     {
-        return DevResource::collection(Dev::all());
+        return Dev::getJsonData(Dev::all());
     }
 
     public function create()
