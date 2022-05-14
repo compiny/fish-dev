@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/devs', [DevController::class, 'index'])->name('dev');
     Route::get('/devs/{id}', [DevController::class, 'edit'])->name('dev.edit');
     Route::get('/create/dev', [DevController::class, 'create'])->name('dev.create');
+    Route::post('/create/dev', [DevController::class, 'store'])->name('dev.store');
 
 
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
