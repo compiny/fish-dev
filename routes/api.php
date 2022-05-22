@@ -9,6 +9,7 @@ use App\Http\Controllers\MetaDevsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\StoreStateController;
 use App\Http\Controllers\TroubleController;
@@ -40,6 +41,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/create/dev', [DevController::class, 'create'])->name('dev.create');
     Route::post('/create/dev', [DevController::class, 'store'])->name('dev.store');
 
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
 
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
     Route::get('/contacts/{id}', [ContactController::class, 'edit'])->name('contacts.edit');

@@ -12,9 +12,9 @@ class StoreState extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'dev_id',
         'state_id',
+        'user_id',
     ];
 
     public function __construct()
@@ -28,15 +28,15 @@ class StoreState extends Model
             ->leftJoin('states', 'store_states.state_id', '=', 'states.id')
             ->leftJoin('users', 'store_states.user_id', '=', 'users.id')
             ->select(DB::raw('users.name as user_name'), DB::raw('states.name as state_name'), DB::raw('store_states.created_at as state_date'))
-            ->where('dev_id', '=', $id)
+            ->where('dev_id', '=', $id)->limit(10)
             ->get();
     }
-/*
+
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
-
+/*
     public function state()
     {
         return $this->hasOne(State::class, 'id', 'state_id');

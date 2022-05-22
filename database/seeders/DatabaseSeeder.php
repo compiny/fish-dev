@@ -7,6 +7,7 @@ use App\Models\Contact;
 use App\Models\Customer;
 use App\Models\Dev;
 use App\Models\Project;
+use App\Models\Setting;
 use App\Models\StoreBundle;
 use App\Models\StoreProject;
 use App\Models\StoreState;
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             VendorSeeder::class,
             ServiceSeeder::class,
             TypeSeeder::class,
+            SettingSeeder::class,
         ]);
         User::factory(10)->create();
         $this->call([

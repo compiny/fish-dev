@@ -13,10 +13,24 @@ class StoreBundle extends Model
 
     public function getStoreBundle($id): Collection
     {
-        return DB::table('store_bundles')
+        $bundleSet = DB::table('store_bundles')
             ->leftJoin('bundles', 'store_bundles.bundle_id', '=', 'bundles.id')
             ->where('store_bundles.dev_id', '=', $id)
             ->select('bundles.id', 'bundles.name')
             ->get();
+
+        $bundleSpr = Bundle::all();
+
+        foreach ($bundleSpr as $item) {
+            if($bundleSet){
+                foreach ($bundleSet as $i){
+                    if($item->id === $i->id ) {
+                        $item->checked = true;
+                    }
+                }
+            }
+        }
+
+        return $bundleSpr;
     }
 }

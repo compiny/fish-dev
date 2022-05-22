@@ -14,6 +14,10 @@ class StoreStateResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'dev_id' => $this->dev_id,
+            'user_id' => $this->user_id,
+            'state_id' => $this->state_id,
+        ];
     }
 }
