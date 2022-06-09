@@ -12,6 +12,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\StoreStateController;
+use App\Http\Controllers\TmcController;
 use App\Http\Controllers\TroubleController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
@@ -24,17 +25,12 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::group(['middleware' => 'auth:api'], function() {
 
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/users', [UserController::class, 'update'])->name('users.update');
     Route::post('/create/users', [UserController::class, 'store'])->name('users.create');
-/*
-    Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
-    Route::get('/projects/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
-    Route::post('/projects', [ProjectController::class, 'update'])->name('projects.update');
-*/
-    //Route::get('/projects/create', [ProjectController::class, 'create']);
-
 
     Route::get('/devs', [DevController::class, 'index'])->name('dev');
     Route::get('/devs/{id}', [DevController::class, 'edit'])->name('dev.edit');
@@ -97,5 +93,10 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     //добавления статуса
     Route::post('/create/store_state', [StoreStateController::class, 'store'])->name('store_state.store');
+
+    //tmc
+    Route::get('/tmcs', [TmcController::class, 'index'])->name('tmcs.index');
+    Route::get('/tmcs/{id}', [TmcController::class, 'edit'])->name('tmcs.edit');
+    Route::post('/tmcs', [TmcController::class, 'update'])->name('tmcs.update');
 
 });

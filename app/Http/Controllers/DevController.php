@@ -16,7 +16,9 @@ class DevController extends Controller
 {
     public function index()
     {
-        return Dev::getJsonData(Dev::all());
+        $items = DB::table('devs')
+            ->leftJoin('customers', 'devs.customer_id', '=', 'customers.id')->get();
+        return Dev::getJsonData($items);
     }
 
     public function create()

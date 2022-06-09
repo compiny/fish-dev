@@ -11,6 +11,7 @@ use App\Models\Setting;
 use App\Models\StoreBundle;
 use App\Models\StoreProject;
 use App\Models\StoreState;
+use App\Models\Tmc;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         $this->call([
             CompanySeeder::class,
+            TmcSeeder::class,
         ]);
          Customer::factory(100)->create();
          Project::factory(100)->create();
@@ -46,5 +48,6 @@ class DatabaseSeeder extends Seeder
          Dev::factory(100)->create();
          StoreBundle::factory(100)->create();
          StoreState::factory(100)->create();
+         Tmc::factory(100)->create();
     }
 }

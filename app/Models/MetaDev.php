@@ -37,12 +37,11 @@ class MetaDev extends Model
 
     static function factory()
     {
-        $arr = [
+        return [
             'vendors' => self::vendor(),
             'troubles' => self::troubles(),
             'types' => self::types(),
             'bundles' => self::bundles()
         ];
-        return $arr;
     }
 }

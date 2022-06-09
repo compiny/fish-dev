@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\Translation\Catalogue\AbstractOperation;
 
 class AuthController extends Controller
 {
@@ -85,5 +86,10 @@ class AuthController extends Controller
         }else{
             return $this->handleResponse(false, $request->errors(), 'Ошибка авторизации!', 200);
         }
+    }
+
+    public function logout (){
+        Auth::user()->tokens()->delete();
+        return 'logged out';
     }
 }

@@ -28,7 +28,7 @@ class StoreState extends Model
             ->leftJoin('states', 'store_states.state_id', '=', 'states.id')
             ->leftJoin('users', 'store_states.user_id', '=', 'users.id')
             ->select(DB::raw('users.name as user_name'), DB::raw('states.name as state_name'), DB::raw('store_states.created_at as state_date'))
-            ->where('dev_id', '=', $id)->limit(10)
+            ->where('dev_id', '=', $id)
             ->get();
     }
 
