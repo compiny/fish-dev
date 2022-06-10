@@ -14,9 +14,9 @@ class TmcController extends Controller
      *
      * @return TmcCollection
      */
-    public function index()
+    public function index(Request $query)
     {
-        return new TmcCollection(Tmc::where('is_cat', false)->get());
+        return (new Tmc)->getData($query);
     }
 
     /**

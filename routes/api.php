@@ -32,8 +32,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/users', [UserController::class, 'update'])->name('users.update');
     Route::post('/create/users', [UserController::class, 'store'])->name('users.create');
 
-    Route::get('/devs', [DevController::class, 'index'])->name('dev');
-    Route::get('/devs/{id}', [DevController::class, 'edit'])->name('dev.edit');
+    Route::get('/devs/{query?}', [DevController::class, 'index'])->name('dev');
+    Route::get('/devs/{id}/edit', [DevController::class, 'edit'])->name('dev.edit');
     Route::get('/create/dev', [DevController::class, 'create'])->name('dev.create');
     Route::post('/create/dev', [DevController::class, 'store'])->name('dev.store');
 
@@ -95,8 +95,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/create/store_state', [StoreStateController::class, 'store'])->name('store_state.store');
 
     //tmc
-    Route::get('/tmcs', [TmcController::class, 'index'])->name('tmcs.index');
+    Route::get('/tmcs/{query?}', [TmcController::class, 'index'])->name('tmcs.index');
     Route::get('/tmcs/{id}', [TmcController::class, 'edit'])->name('tmcs.edit');
-    Route::post('/tmcs', [TmcController::class, 'update'])->name('tmcs.update');
+    //Route::post('/tmcs', [TmcController::class, 'update'])->name('tmcs.update');
 
 });

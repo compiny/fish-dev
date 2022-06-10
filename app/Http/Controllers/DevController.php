@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\DB;
 
 class DevController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $items = DB::table('devs')
-            ->leftJoin('customers', 'devs.customer_id', '=', 'customers.id')->get();
+            ->leftJoin('customers', 'devs.customer_id', '=', 'customers.id')
+            ->limit($request->limit)
+            ->get();
         return Dev::getJsonData($items);
     }
 
