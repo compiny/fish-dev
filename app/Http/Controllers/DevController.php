@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\CPaginator;
 use App\Http\Requests\StoreDevRequest;
 use App\Http\Requests\UpdateDevRequest;
 use App\Http\Resources\DevCollection;
@@ -14,11 +15,10 @@ use Illuminate\Support\Facades\DB;
 
 class DevController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $items = DB::table('devs')
             ->leftJoin('customers', 'devs.customer_id', '=', 'customers.id')
-            ->limit($request->limit)
             ->get();
         return Dev::getJsonData($items);
     }

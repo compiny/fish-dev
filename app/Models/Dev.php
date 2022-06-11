@@ -25,7 +25,7 @@ class Dev extends Model
     static function getJsonData($data)
     {
         return [
-            'data' => $data,
+            'devs' => $data,
             'spr' => [
                 'vendors' => Vendor::all(),
                 'bundles' => Bundle::all(),
