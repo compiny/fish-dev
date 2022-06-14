@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Tmc;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
 
 class TmcResource extends JsonResource
 {
@@ -16,6 +17,12 @@ class TmcResource extends JsonResource
     public function toArray($request)
     {
         return parent::toArray($request);
+    }
+    public function with($request)
+    {
+        return [
+            'cats' => DB::table('tmcs')->where('is_cat', '=', true)->get(['id', 'name']),
+        ];
     }
 
 }

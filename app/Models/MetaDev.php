@@ -15,6 +15,10 @@ class MetaDev extends Model
         parent::__construct();
     }
 
+    private static function customer():array
+    {
+        return Customer::all()->toArray();
+    }
     private static function vendor():array
     {
         return Vendor::all()->toArray();
@@ -41,7 +45,8 @@ class MetaDev extends Model
             'vendors' => self::vendor(),
             'troubles' => self::troubles(),
             'types' => self::types(),
-            'bundles' => self::bundles()
+            'bundles' => self::bundles(),
+            'customers' => self::customer()
         ];
     }
 }

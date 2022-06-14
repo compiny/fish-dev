@@ -96,7 +96,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     //tmc
     Route::get('/tmcs/{query?}', [TmcController::class, 'index'])->name('tmcs.index');
-    Route::get('/tmcs/{id}', [TmcController::class, 'edit'])->name('tmcs.edit');
+    Route::get('/tmcs/{id}/edit', [TmcController::class, 'edit'])->name('tmcs.edit');
     //Route::post('/tmcs', [TmcController::class, 'update'])->name('tmcs.update');
 
 });
