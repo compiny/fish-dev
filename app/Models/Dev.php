@@ -13,12 +13,15 @@ class Dev extends Model
     use HasFactory;
 
     protected $fillable = [
-        'customer_id',
+        'id',
         'n',
         'date',
+        'troubles',
         'type_id',
         'vendor_id',
-        'troubles',
+        'customer_id',
+        'bundles',
+        'customers',
     ];
 
     public function customer(): HasOne
@@ -43,20 +46,5 @@ class Dev extends Model
                 'states' => State::all('id', 'name')
             ]
         ];
-    }
-    public function storeBundles($dev_id, $items){
-
-    }
-
-    private function prepareBundles($arr, $dev_id)
-    {
-        $newArr = [];
-        $obj = new \stdClass();
-        foreach ($arr as $item){
-            $obj->bundle_id = $item->id;
-            $obj->project_id = $dev_id;
-            $newArr[] = $obj;
-        }
-        return $newArr;
     }
 }

@@ -11,6 +11,11 @@ class StoreBundle extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'dev_id',
+        'bundle_id',
+    ];
+
     public function getStoreBundle($id): Collection
     {
         $bundleSet = DB::table('store_bundles')

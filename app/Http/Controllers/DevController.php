@@ -34,17 +34,25 @@ class DevController extends Controller
     public function store(StoreDevRequest $request)
     {
         $new = Dev::create([
-            'n' => $request->dev->n,
-            'date' => $request->dev->date,
-            'troubles' => $request->dev->troubles,
+            'n' => $request->input('dev.n'),
+            'date' => $request->input('dev.date'),
+            'troubles' => $request->input('dev.troubles_text'),
             'customer_id' => 1,
-            'type_id' => $request->dev->type_id,
-            'vendor_id' => $request->dev->vendor_id,
-            'sn' => $request->dev->sn,
+            'type_id' => $request->input('dev.type_id'),
+            'vendor_id' => $request->input('dev.vendor_id'),
+            'sn' => $request->input('dev.sn'),
         ]);
-        //$dev = new Dev();
-        //$dev->storeBundles($new->id, $request->bundles);
-        //return $request->bundles;
+
+        $arr = $request->input('bundles.*');
+        $newArr = [];
+        foreach ($arr as $item){
+            $newArr[] = [
+                'bundle_id' => $item['id'],
+                'dev_id' => $new->id
+            ];
+        }
+
+        return DB::table('store_bundles')->insert($newArr);
     }
 
     /**
