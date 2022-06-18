@@ -20,21 +20,21 @@ class DevResource extends JsonResource
             'id' => $this->id,
             'n' => $this->n,
             'date' => $this->date,
-            'customer' => $this->customer,
             'sn' => $this->sn,
             'troubles_text' => $this->troubles,
-            'bundles' => (new \App\Models\StoreBundle)->getStoreBundle($this->id),
             'type_id' => $this->type_id,
             'vendor_id' => $this->vendor_id,
             'final' => $this->final,
             'notification' => $this->notification,
-            'states' => (new \App\Models\StoreState)->getStateDev($this->id)
         ];
     }
 
     public function with($request)
     {
         return [
+            'states' => (new \App\Models\StoreState)->getStateDev($this->id),
+            'bundles' => (new \App\Models\StoreBundle)->getStoreBundle($this->id),
+            'customer' => $this->customer,
             'spr' => [
                 'vendors' => Vendor::all(),
                 'bundles' => Bundle::all(),
