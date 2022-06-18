@@ -26,15 +26,12 @@ class StoreDevRequest extends FormRequest
         return [
             'n' => 'required',
             'date' => 'required',
-            'final' => 'nullable',
             'troubles' => 'nullable',
-            'address' => 'nullable',
-            'phone' => 'nullable',
             'customer_id' => 'required',
-            'type_id' => 'nullable',
+            'type_id' => 'required',
             'vendor_id' => 'nullable',
             'sn' => 'nullable',
-            'notofication' => 'boolean',
+            'bundles' => 'nullable',
         ];
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DevController;
+use App\Http\Controllers\MetaDev;
 use App\Http\Controllers\MetaDevsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -36,6 +37,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/devs/{id}/edit', [DevController::class, 'edit'])->name('dev.edit');
     Route::get('/create/dev', [DevController::class, 'create'])->name('dev.create');
     Route::post('/create/dev', [DevController::class, 'store'])->name('dev.store');
+
+    Route::get('/metadev', [MetaDev::class, 'index'])->name('metadev');
 
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');

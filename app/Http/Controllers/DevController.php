@@ -7,8 +7,11 @@ use App\Http\Requests\StoreDevRequest;
 use App\Http\Requests\UpdateDevRequest;
 use App\Http\Resources\DevCollection;
 use App\Http\Resources\DevResource;
+use App\Models\Bundle;
+use App\Models\Customer;
 use App\Models\MetaDev;
 use App\Models\Dev;
+use App\Models\StoreBundle;
 use Illuminate\Http\Request;
 use App\Http\Resources\CreateDevResource;
 use Illuminate\Support\Facades\DB;
@@ -28,15 +31,20 @@ class DevController extends Controller
         return new CreateDevResource(MetaDev::factory());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreDevRequest $request)
     {
-        //
+        $new = Dev::create([
+            'n' => $request->dev->n,
+            'date' => $request->dev->date,
+            'troubles' => $request->dev->troubles,
+            'customer_id' => 1,
+            'type_id' => $request->dev->type_id,
+            'vendor_id' => $request->dev->vendor_id,
+            'sn' => $request->dev->sn,
+        ]);
+        //$dev = new Dev();
+        //$dev->storeBundles($new->id, $request->bundles);
+        //return $request->bundles;
     }
 
     /**
