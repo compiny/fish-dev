@@ -12,8 +12,10 @@ use App\Models\Customer;
 use App\Models\MetaDev;
 use App\Models\Dev;
 use App\Models\StoreBundle;
+use App\Models\StoreState;
 use Illuminate\Http\Request;
 use App\Http\Resources\CreateDevResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DevController extends Controller
@@ -52,7 +54,10 @@ class DevController extends Controller
             ];
         }
 
-        return DB::table('store_bundles')->insert($newArr);
+        DB::table('store_bundles')->insert($newArr);
+
+        $user = Auth::user();
+        StoreState::create(['user_id' => $user->id, 'dev_id' => $new->id, 'state_id' => 1]);
     }
 
     /**

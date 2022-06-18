@@ -31,6 +31,7 @@ class StoreDevRequest extends FormRequest
             'dev.type_id' => 'nullable',
             'dev.vendor_id' => 'nullable',
             'dev.sn' => 'nullable',
+            'state.*' => 'nullable'
         ];
     }
 }
