@@ -22,9 +22,18 @@ class DevController extends Controller
 {
     public function index()
     {
+
         $items = DB::table('devs')
+            ->select([
+                'devs.id',
+                'devs.n',
+                'devs.date',
+                'customers.name',
+                'devs.sn',
+                //DB::raw('count(*) as state_name')
+            ])
             ->leftJoin('customers', 'devs.customer_id', '=', 'customers.id')
-            ->get(['devs.id', 'devs.n', 'devs.date', 'customers.name', 'devs.sn']);
+            ->get();
         return Dev::getJsonData($items);
     }
 

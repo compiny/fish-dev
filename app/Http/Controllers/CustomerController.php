@@ -71,8 +71,9 @@ class CustomerController extends Controller
         return new CustomerResource(Customer::findOrFail($id));
     }
 
-    public function update(UpdateCustomerRequest $request)
+    public function update(Request $request)
     {
+
         $user = Auth::user();
         $customer = Customer::findOrFail($request->id);
         $customer->fill([

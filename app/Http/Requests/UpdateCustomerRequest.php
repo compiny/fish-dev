@@ -24,6 +24,7 @@ class UpdateCustomerRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'required',
             'name' => 'required',
             'email' => 'nullable',
             'phone' => 'nullable',

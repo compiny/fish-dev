@@ -28,8 +28,8 @@ class StoreDevRequest extends FormRequest
             'dev.date' => 'required',
             'dev.troubles_text' => 'nullable',
             'dev.customer_id' => 'required',
-            'dev.type_id' => 'nullable',
-            'dev.vendor_id' => 'nullable',
+            'dev.type_id' => 'required',
+            'dev.vendor_id' => 'required',
             'dev.sn' => 'nullable',
             'state.*' => 'nullable',
             'bundles.*' => 'nullable'
