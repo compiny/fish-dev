@@ -96,8 +96,18 @@ class DevController extends Controller
         ]);
         $dev->save();
 
+        $arr = $request->input('bundles.*');
+        $newArr = [];
+        foreach ($arr as $item){
+            $newArr[] = [
+                'bundle_id' => $item['id'],
+                'dev_id' => $dev->id
+            ];
+        }
 
-        return $dev;
+        DB::table('store_bundles')->where('dev_id', '=', $dev->id)->delete();
+        DB::table('store_bundles')->insert($newArr);
+        //return $newArr;
 
     }
 
