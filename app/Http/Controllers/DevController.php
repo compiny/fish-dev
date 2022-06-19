@@ -24,7 +24,7 @@ class DevController extends Controller
     {
         $items = DB::table('devs')
             ->leftJoin('customers', 'devs.customer_id', '=', 'customers.id')
-            ->get();
+            ->get(['devs.id', 'devs.n', 'devs.date', 'customers.name', 'devs.sn']);
         return Dev::getJsonData($items);
     }
 
@@ -39,7 +39,7 @@ class DevController extends Controller
             'n' => $request->input('dev.n'),
             'date' => $request->input('dev.date'),
             'troubles' => $request->input('dev.troubles_text'),
-            'customer_id' => 1,
+            'customer_id' => $request->input('dev.customer_id'),
             'type_id' => $request->input('dev.type_id'),
             'vendor_id' => $request->input('dev.vendor_id'),
             'sn' => $request->input('dev.sn'),
@@ -71,43 +71,36 @@ class DevController extends Controller
         //
     }
 
-    public function edit($id): DevResource
+    public function edit($id)
     {
         return new DevResource(Dev::findOrFail($id));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateDevRequest $request, $id)
+    public function update(UpdateDevRequest $request)
     {
+
         $user = Auth::user();
-        $customer = Customer::findOrFail($request->id);
-        $customer->fill([
-            'n' => $request->n,
-            'customer_id' => $request->customer_id,
-            'vendor_id' => $request->vendor_id,
-            'type_id' => $request->type_id,
-            'sn' => $request->sn,
-            'final' => $request->final,
-            'date' => $request->date,
-            'troubles' => $request->troubles,
-            'notification' => $request->notification,
+        $dev = Dev::findOrFail($request->input('dev.id'));
+
+        $dev->fill([
+            'n' => $request->input('dev.n'),
+            'customer_id' => $request->input('dev.customer_id'),
+            'vendor_id' => $request->input('dev.vendor_id'),
+            'type_id' => $request->input('dev.type_id'),
+            'sn' => $request->input('dev.sn'),
+            'final' => $request->input('dev.final'),
+            'date' => $request->input('dev.date'),
+            'troubles' => $request->input('dev.troubles_text'),
+            'notification' => $request->input('dev.notification'),
             'user_id' => $user->id,
         ]);
-        $customer->save();
+        $dev->save();
+
+
+        return $dev;
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

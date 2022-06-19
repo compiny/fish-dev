@@ -24,17 +24,18 @@ class UpdateDevRequest extends FormRequest
     public function rules()
     {
         return [
-            'n' => 'required',
-            'date' => 'required',
-            'final' => 'nullable',
-            'troubles' => 'nullable',
-            'address' => 'nullable',
-            'phone' => 'nullable',
-            'customer_id' => 'required',
-            'type_id' => 'nullable',
-            'vendor_id' => 'nullable',
-            'sn' => 'nullable',
-            'notification' => 'boolean',
+            'dev.n' => 'required',
+            'dev.date' => 'required',
+            'dev.final' => 'nullable',
+            'dev.troubles_text' => 'nullable',
+            'dev.address' => 'nullable',
+            'dev.phone' => 'nullable',
+            'dev.customer_id' => 'required',
+            'dev.type_id' => 'nullable',
+            'dev.vendor_id' => 'nullable',
+            'dev.sn' => 'nullable',
+            'bundles.*' => 'nullable',
+            'states.*' => 'nullable',
         ];
     }
 }

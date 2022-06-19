@@ -15,6 +15,7 @@ class Dev extends Model
     protected $fillable = [
         'id',
         'n',
+        'sn',
         'date',
         'troubles',
         'type_id',
@@ -22,6 +23,7 @@ class Dev extends Model
         'customer_id',
         'bundles',
         'customers',
+        'states',
     ];
 
     public function customer(): HasOne

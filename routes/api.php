@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/devs/{id}/edit', [DevController::class, 'edit'])->name('dev.edit');
     Route::get('/create/dev', [DevController::class, 'create'])->name('dev.create');
     Route::post('/create/dev', [DevController::class, 'store'])->name('dev.store');
+    Route::post('/devs', [DevController::class, 'update'])->name('dev.update');
 
     Route::get('/metadev', [MetaDev::class, 'index'])->name('metadev');
 
