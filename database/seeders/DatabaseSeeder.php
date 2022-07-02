@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Account;
+use App\Models\Bank;
 use App\Models\Bundle;
 use App\Models\Contact;
 use App\Models\Customer;
 use App\Models\Dev;
 use App\Models\Project;
-use App\Models\Setting;
 use App\Models\StoreBundle;
 use App\Models\StoreProject;
 use App\Models\StoreState;
@@ -49,5 +50,7 @@ class DatabaseSeeder extends Seeder
          StoreBundle::factory(100)->create();
          StoreState::factory(100)->create();
          Tmc::factory(100)->create();
+         Bank::factory(100)->create();
+         Account::factory(100)->create();
     }
 }
