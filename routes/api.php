@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BankController;
 use App\Http\Controllers\BundleController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
@@ -102,5 +103,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/tmcs/{query?}', [TmcController::class, 'index'])->name('tmcs.index');
     Route::get('/tmcs/{id}/edit', [TmcController::class, 'edit'])->name('tmcs.edit');
     //Route::post('/tmcs', [TmcController::class, 'update'])->name('tmcs.update');
+
+    Route::apiResource('banks', BankController::class);
 
 });
