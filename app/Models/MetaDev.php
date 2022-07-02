@@ -52,7 +52,11 @@ class MetaDev extends Model
             'types' => self::types(),
             'bundles' => self::bundles(),
             'customers' => self::customer(),
-            //'states' => self::states()
+            //'states' => self::states(),
+            'lastNum' => self::getLastNum(),
         ];
+    }
+    public static function getLastNum() {
+        return (integer) Dev::latest()->take(1)->get()->first()->n;
     }
 }
