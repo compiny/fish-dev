@@ -25,6 +25,7 @@ class UpdateBankRequest extends FormRequest
     {
         return [
             'bik' => 'required',
+            'id' => 'required',
             'name' => 'required',
             'korr' => 'required',
             'adr' => 'nullable',

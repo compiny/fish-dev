@@ -2,83 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBankRequest;
+use App\Http\Requests\UpdateBankRequest;
 use App\Http\Resources\BankResource;
 use App\Models\Bank;
 use Illuminate\Http\Request;
 
 class BankController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return BankResource::collection(Bank::paginate());
+        return BankResource::collection(Bank::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(StoreBankRequest $request)
     {
-        //
+        Bank::create([
+            'name' => $request->name,
+            'bik' => $request->bik,
+            'korr' => $request->korr,
+            'adr' => $request->adr,
+            'city' => $request->city,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return new BankResource(Bank::findOrFail($id));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(UpdateBankRequest $request, $id)
     {
-        //
+        $item = Bank::findOrFail($id);
+        $item->fill([
+            'name' => $request->name,
+            'bik' => $request->bik,
+            'korr' => $request->korr,
+            'adr' => $request->adr,
+            'city' => $request->city,
+        ]);
+        $item->save();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

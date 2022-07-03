@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\BundleController;
@@ -105,5 +107,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     //Route::post('/tmcs', [TmcController::class, 'update'])->name('tmcs.update');
 
     Route::apiResource('banks', BankController::class);
+    Route::apiResource('accounts', AccountController::class);
 
 });

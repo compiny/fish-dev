@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAccountRequest;
+use App\Http\Requests\UpdateAccountRequest;
+use App\Http\Requests\UpdateBankRequest;
+use App\Http\Resources\AccountResource;
+use App\Models\Account;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -13,7 +18,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
+        return AccountResource::collection(Account::all());
     }
 
     /**
@@ -32,9 +37,15 @@ class AccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAccountRequest $request)
     {
-        //
+        Account::create([
+            'name' => $request->name,
+            'accountNum' => $request->accountNum,
+            'dateOut' => $request->dateOut,
+            'customer_id' => $request->customer_id,
+            'bank_id' => $request->bank_id,
+        ]);
     }
 
     /**
@@ -45,7 +56,7 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        //
+        return new AccountResource(Account::findOrFail($id));
     }
 
     /**
@@ -66,9 +77,17 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAccountRequest $request, $id)
     {
-        //
+        $item = Account::findOrFail($id);
+        $item->fill([
+            'name' => $request->name,
+            'accountNum' => $request->accountNum,
+            'dateOut' => $request->dateOut,
+            'customer_id' => $request->customer_id,
+            'bank_id' => $request->bank_id,
+        ]);
+        $item->save();
     }
 
     /**
