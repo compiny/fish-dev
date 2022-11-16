@@ -24,15 +24,15 @@ class StoreDevRequest extends FormRequest
     public function rules()
     {
         return [
-            'dev.n' => 'required',
-            'dev.date' => 'required',
-            'dev.troubles_text' => 'nullable',
-            'dev.customer_id' => 'required',
-            'dev.type_id' => 'required',
-            'dev.vendor_id' => 'required',
-            'dev.sn' => 'nullable',
-            'state.*' => 'nullable',
-            'bundles.*' => 'nullable'
+            'date' => 'required',
+            'troubles_text' => 'nullable',
+            'customer_id' => 'nullable',
+            'type_id' => 'nullable',
+            'vendor_id' => 'nullable',
+            'sn' => 'nullable',
+            'bundles.*' => 'nullable',
+            'states.*' => 'nullable',
+            'states.*' => 'nullable'
         ];
     }
 }

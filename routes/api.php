@@ -36,12 +36,15 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/users', [UserController::class, 'update'])->name('users.update');
     Route::post('/create/users', [UserController::class, 'store'])->name('users.create');
 
+    Route::apiResource('devs', DevController::class);
+    /*
     Route::get('/devs/{query?}', [DevController::class, 'index'])->name('dev');
     Route::get('/devs/{id}/edit', [DevController::class, 'edit'])->name('dev.edit');
     Route::get('/create/dev', [DevController::class, 'create'])->name('dev.create');
     Route::post('/create/dev', [DevController::class, 'store'])->name('dev.store');
     Route::post('/devs', [DevController::class, 'update'])->name('dev.update');
-
+*/
+    //выдача справочников для dev.create
     Route::get('/metadev', [MetaDev::class, 'index'])->name('metadev');
 
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');

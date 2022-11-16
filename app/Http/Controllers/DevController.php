@@ -39,23 +39,24 @@ class DevController extends Controller
 
     public function create()
     {
-        return new CreateDevResource(MetaDev::factory());
+
     }
 
     public function store(StoreDevRequest $request)
     {
         $new = Dev::create([
-            'n' => $request->input('dev.n'),
-            'date' => $request->input('dev.date'),
-            'troubles' => $request->input('dev.troubles_text'),
-            'customer_id' => $request->input('dev.customer_id'),
-            'type_id' => $request->input('dev.type_id'),
-            'vendor_id' => $request->input('dev.vendor_id'),
-            'sn' => $request->input('dev.sn'),
+            'n' => $request->input('n'),
+            'date' => $request->input('date'),
+            'troubles' => $request->input('troubles_text'),
+            'customer_id' => $request->input('customer_id'),
+            'type_id' => $request->input('type_id'),
+            'vendor_id' => $request->input('vendor_id'),
+            'sn' => $request->input('sn'),
         ]);
 
         $arr = $request->input('bundles.*');
         $newArr = [];
+
         foreach ($arr as $item){
             $newArr[] = [
                 'bundle_id' => $item['id'],
@@ -64,25 +65,18 @@ class DevController extends Controller
         }
 
         DB::table('store_bundles')->insert($newArr);
-
-        $user = Auth::user();
-        StoreState::create(['user_id' => $user->id, 'dev_id' => $new->id, 'state_id' => 1]);
+        StoreState::create(['user_id' => $this->user->id, 'dev_id' => $new->id, 'state_id' => 1]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show()
     {
-        //
+        return new CreateDevResource(MetaDev::factory());
     }
 
     public function edit($id)
     {
         return new DevResource(Dev::findOrFail($id));
+        //return Dev::findOrFail($id);
     }
 
     public function update(UpdateDevRequest $request)

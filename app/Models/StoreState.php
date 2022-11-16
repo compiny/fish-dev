@@ -32,6 +32,8 @@ class StoreState extends Model
             ->get();
     }
 
+
+
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');

@@ -38,12 +38,12 @@ class MetaDev extends Model
     {
         return Bundle::all()->toArray();
     }
-    /*
+
     private static function states():array
     {
         return State::all()->toArray();
     }
-    */
+
     static function factory()
     {
         return [
@@ -51,8 +51,8 @@ class MetaDev extends Model
             'troubles' => self::troubles(),
             'types' => self::types(),
             'bundles' => self::bundles(),
-            'customers' => self::customer(),
-            //'states' => self::states(),
+            //'customers' => self::customer(),
+            'states' => self::states(),
             'lastNum' => self::getLastNum(),
         ];
     }

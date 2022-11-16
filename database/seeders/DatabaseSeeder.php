@@ -11,7 +11,9 @@ use App\Models\Dev;
 use App\Models\Project;
 use App\Models\StoreBundle;
 use App\Models\StoreProject;
+use App\Models\StoreService;
 use App\Models\StoreState;
+use App\Models\StoreTmc;
 use App\Models\Tmc;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -52,5 +54,7 @@ class DatabaseSeeder extends Seeder
          Tmc::factory(100)->create();
          Bank::factory(100)->create();
          Account::factory(100)->create();
+         StoreService::factory(1000)->create();
+         StoreTmc::factory(1000)->create();
     }
 }

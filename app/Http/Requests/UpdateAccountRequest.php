@@ -24,11 +24,10 @@ class UpdateAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'bik' => 'required',
+            'id' => 'required',
             'name' => 'required',
-            'korr' => 'required',
-            'adr' => 'nullable',
-            'city' => 'nullable',
+            'bank_id' => 'required',
+            'customer_id' => 'required',
         ];
     }
 }

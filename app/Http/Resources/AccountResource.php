@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Bank;
+use App\Models\Customer;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AccountResource extends JsonResource
@@ -21,12 +22,15 @@ class AccountResource extends JsonResource
             'accountNum' => $this->accountNum,
             'bank_id' => $this->id,
             'bankName' => $this->bank->name,
+            'customer_id' => $this->id,
+            'customerName' => $this->customer->name,
         ];
     }
     public function with($request)
     {
         return [
             'banks' => Bank::all(['id', 'name']),
+            'customers' => Customer::all(['id', 'name']),
         ];
     }
 }
