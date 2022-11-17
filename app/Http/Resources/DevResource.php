@@ -12,6 +12,7 @@ use Illuminate\Session\Store;
 
 class DevResource extends JsonResource
 {
+
     public function toArray($request): array
     {
         return [
@@ -26,16 +27,16 @@ class DevResource extends JsonResource
             'notification' => $this->notification,
             'services' => (new \App\Models\StoreService)->getServiceDev($this->id),
             'tmcs' => (new \App\Models\StoreTmc)->getTmcDev($this->id),
+            'customer_name' => $this->customer_id,
+            'states' => (new \App\Models\StoreState)->getStateDev($this->id),
+            'services' => (new \App\Models\StoreService)->getServiceDev($this->id),
+            'bundles' => (new \App\Models\StoreBundle)->getStoreBundle($this->id),
         ];
     }
 
     public function with($request)
     {
         return [
-            'services' => (new \App\Models\StoreService)->getServiceDev($this->id),
-            'states' => (new \App\Models\StoreState)->getStateDev($this->id),
-            'bundles' => (new \App\Models\StoreBundle)->getStoreBundle($this->id),
-            'customer' => $this->customer,
             'spr' => [
                 'vendors' => Vendor::all(),
                 'bundles' => Bundle::all(),

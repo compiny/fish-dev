@@ -19,6 +19,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
+
         $items = Customer::all();
 
         return CustomerResource::collection($items);

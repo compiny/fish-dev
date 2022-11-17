@@ -12,6 +12,7 @@ use App\Http\Controllers\MetaDev;
 use App\Http\Controllers\MetaDevsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SearchCustomerController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StateController;
@@ -37,13 +38,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/create/users', [UserController::class, 'store'])->name('users.create');
 
     Route::apiResource('devs', DevController::class);
-    /*
-    Route::get('/devs/{query?}', [DevController::class, 'index'])->name('dev');
-    Route::get('/devs/{id}/edit', [DevController::class, 'edit'])->name('dev.edit');
-    Route::get('/create/dev', [DevController::class, 'create'])->name('dev.create');
-    Route::post('/create/dev', [DevController::class, 'store'])->name('dev.store');
-    Route::post('/devs', [DevController::class, 'update'])->name('dev.update');
-*/
+
     //выдача справочников для dev.create
     Route::get('/metadev', [MetaDev::class, 'index'])->name('metadev');
 
@@ -54,10 +49,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/contacts/{id}', [ContactController::class, 'edit'])->name('contacts.edit');
     Route::post('/contacts', [ContactController::class, 'update'])->name('contacts.update');
 
-    Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
-    Route::get('/customers/{id}', [CustomerController::class, 'edit'])->name('customers.edit');
-    Route::post('/customers', [CustomerController::class, 'update'])->name('customers.update');
-    Route::post('/create/customers', [CustomerController::class, 'store'])->name('customers.create');
+    Route::apiResource('customers', CustomerController::class);
+    Route::get('search_customers', SearchCustomerController::class);
 
     Route::get('/states', [StateController::class, 'index'])->name('states');
     Route::get('/states/{id}', [StateController::class, 'edit'])->name('states.edit');

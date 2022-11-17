@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Http\Resources\CreateDevResource;
+use App\Http\Resources\Dev;
+use App\Http\Resources\DevResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 

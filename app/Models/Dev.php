@@ -14,15 +14,15 @@ class Dev extends Model
 
     protected $fillable = [
         'id',
-        //'n',
+        'n',
         'sn',
         'date',
         'troubles',
         'type_id',
         'vendor_id',
-        //'customer_id',
-        //'bundles',
-        //'states',
+        'customer_id',
+        'bundles',
+        'states',
     ];
 
     public function customer(): HasOne

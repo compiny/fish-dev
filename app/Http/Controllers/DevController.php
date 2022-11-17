@@ -68,9 +68,10 @@ class DevController extends Controller
         StoreState::create(['user_id' => $this->user->id, 'dev_id' => $new->id, 'state_id' => 1]);
     }
 
-    public function show()
+    public function show($id)
     {
-        return new CreateDevResource(MetaDev::factory());
+        //return new CreateDevResource(MetaDev::factory());
+        return new DevResource(Dev::findOrFail($id));
     }
 
     public function edit($id)
