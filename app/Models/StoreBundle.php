@@ -24,7 +24,7 @@ class StoreBundle extends Model
             ->select('bundles.id', 'bundles.name')
             ->get();
 
-        $bundleSpr = Bundle::all();
+        $bundleSpr = Bundle::all('id', 'name');
 
         foreach ($bundleSpr as $item) {
             if($bundleSet){

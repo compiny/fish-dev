@@ -21,13 +21,20 @@ class Dev extends Model
         'type_id',
         'vendor_id',
         'customer_id',
-        'bundles',
-        'states',
+        'bundle_id',
     ];
 
     public function customer(): HasOne
     {
         return $this->hasOne(Customer::class, 'id', 'customer_id');
+    }
+    public function type(): HasOne
+    {
+        return $this->hasOne(Type::class, 'id', 'type_id');
+    }
+    public function vendor(): HasOne
+    {
+        return $this->hasOne(Vendor::class, 'id', 'vendor_id');
     }
     public function bundles(): HasMany
     {
@@ -39,6 +46,7 @@ class Dev extends Model
     {
         return [
             'devs' => $data,
+            /*
             'spr' => [
                 'vendors' => Vendor::all(),
                 'bundles' => Bundle::all(),
@@ -46,6 +54,7 @@ class Dev extends Model
                 'troubles' => Trouble::all(),
                 'states' => State::all('id', 'name')
             ]
+            */
         ];
     }
 }
