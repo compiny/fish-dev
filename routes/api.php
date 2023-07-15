@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/contacts', [ContactController::class, 'update'])->name('contacts.update');
 
     Route::apiResource('customers', CustomerController::class);
+
     Route::get('search_customers', SearchCustomerController::class);
 
     Route::get('/states', [StateController::class, 'index'])->name('states');
@@ -62,10 +63,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/vendors', [VendorController::class, 'update'])->name('vendors.update');
     Route::post('/create/vendors', [VendorController::class, 'store'])->name('vendors.create');
 
-    Route::get('/troubles', [TroubleController::class, 'index'])->name('troubles');
-    Route::get('/troubles/{id}', [TroubleController::class, 'edit'])->name('troubles.edit');
-    Route::post('/troubles', [TroubleController::class, 'update'])->name('troubles.update');
-    Route::post('/create/troubles', [TroubleController::class, 'store'])->name('troubles.create');
+    Route::apiResource('troubles', TroubleController::class);
 
     Route::get('/services', [ServiceController::class, 'index'])->name('services');
     Route::get('/services/{id}', [ServiceController::class, 'edit'])->name('services.edit');

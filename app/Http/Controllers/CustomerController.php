@@ -58,7 +58,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        return new CustomerResource( Customer::findOrFail($id) );
     }
 
     /**
@@ -69,10 +69,10 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        return new CustomerResource(Customer::findOrFail($id));
+        return new CustomerResource( Customer::findOrFail($id) );
     }
 
-    public function update(Request $request)
+    public function update( UpdateCustomerRequest $request )
     {
 
         $user = Auth::user();

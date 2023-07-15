@@ -15,37 +15,11 @@ use Symfony\Component\Translation\Catalogue\AbstractOperation;
 
 class AuthController extends Controller
 {
-    public function activate(Request $request){
 
-
-        $validator = Validator::make($request->all(), [
-           'code' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
-        if($validator->fails()){
-            return $this->handleResponse(false, $validator->errors(), 'Ошибка проверки секретного кода!', 200);
-        }
-
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password,
-            'code' => $request->code,
-        ];
-
-
-        if (Auth::validate($credentials)){
-
-        }
-
-
-
-    }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function register(Request $request)
     {
@@ -56,7 +30,8 @@ class AuthController extends Controller
             'repassword' => 'required|same:password',
         ]);
 
-        if($validator->fails()){
+        if( $validator->fails() )
+        {
             return $this->handleResponse(false, $validator->errors(), 'Ошибка проверки!', 200);
         }
 
@@ -84,7 +59,7 @@ class AuthController extends Controller
             $result = $user->createToken($request->email);
             return $this->handleResponse(true, $result, 'Пользователь авторизован!', 200);
         }else{
-            return $this->handleResponse(false, $request->errors(), 'Ошибка авторизации!', 200);
+            return $this->handleResponse(false, [], 'Ошибка авторизации!', 200);
         }
     }
 

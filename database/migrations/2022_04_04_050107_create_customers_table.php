@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('adr')->nullable();
             $table->text('description')->nullable();
             $table->bigInteger('user_id')->unsigned();
+            $table->integer('tip')->default(0);
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

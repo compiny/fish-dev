@@ -8,6 +8,8 @@ use App\Models\Bundle;
 use App\Models\Contact;
 use App\Models\Customer;
 use App\Models\Dev;
+use App\Models\Email;
+use App\Models\Phone;
 use App\Models\Project;
 use App\Models\StoreBundle;
 use App\Models\StoreProject;
@@ -56,5 +58,7 @@ class DatabaseSeeder extends Seeder
          Account::factory(100)->create();
          StoreService::factory(1000)->create();
          StoreTmc::factory(1000)->create();
+         Phone::factory(1000)->create();
+         Email::factory(1000)->create();
     }
 }

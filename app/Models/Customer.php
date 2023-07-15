@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     protected $fillable = [
         'id',
@@ -18,5 +18,17 @@ class Customer extends Model
         'adr',
         'email',
         'user_id',
+        'emails',
+        'phones'
     ];
+
+    public function phones(): HasMany
+    {
+        return $this->hasMany(Phone::class, 'customer_id', 'id');
+    }
+
+    public function emails(): HasMany
+    {
+        return $this->hasMany(Email::class, 'customer_id', 'id' );
+    }
 }
